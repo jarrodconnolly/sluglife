@@ -1,4 +1,8 @@
-# [sluglife](https://github.com/jarrodconnolly/sluglife)
+
+[![Build Status](https://secure.travis-ci.org/jarrodconnolly/sluglife.png)](http://travis-ci.org/jarrodconnolly/sluglife)
+![GitHub license](https://img.shields.io/github/license/jarrodconnolly/sluglife.svg)
+
+# sluglife
 
 slugifies every string, even when it contains unicode!
 
@@ -6,19 +10,16 @@ Make strings url-safe.
 
 - respecting [RFC 3986](https://tools.ietf.org/html/rfc3986)
 - Comprehensive tests
-- No dependencies (except the unicode table)
-- Not in coffee-script (except the tests lol)
 - Coerces foreign symbols to their english equivalent
-- Works in browser (window.slug) and AMD/CommonJS-flavoured module loaders (except the unicode symbols unless you use browserify but who wants to download a ~2mb js file, right?)
 
 ```
-npm install slug
+npm install sluglife
 ```
 
 ## example
 
 ```javascript
-var slug = require('slug')
+var slug = require('sluglife')
 var print = console.log.bind(console, '>')
 
 print(slug('i ♥ unicode'))
@@ -68,5 +69,4 @@ slug.defaults.modes['pretty'] = {
 };
 ```
 
-[![Build Status](https://secure.travis-ci.org/jarrodconnolly/sluglife.png)](http://travis-ci.org/jarrodconnolly/sluglife)
 
