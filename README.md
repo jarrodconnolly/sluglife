@@ -1,4 +1,4 @@
-# [slug](https://github.com/dodo/node-slug)
+# [sluglife](https://github.com/jarrodconnolly/sluglife)
 
 slugifies every string, even when it contains unicode!
 
@@ -13,10 +13,6 @@ Make strings url-safe.
 
 ```
 npm install slug
-```
-
-```
-bower install slug
 ```
 
 ## example
@@ -72,15 +68,5 @@ slug.defaults.modes['pretty'] = {
 };
 ```
 
-## browser
-
-When using browserify you might want to remove the symbols table from your bundle by using `--ignore` similar to this:
-```bash
-# generates a standalone slug browser bundle:
-browserify slug.js --ignore unicode/category/So -s slug > slug-browser.js
-```
-
-[![Build Status](https://secure.travis-ci.org/dodo/node-slug.png)](http://travis-ci.org/dodo/node-slug)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dodo/node-slug/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://secure.travis-ci.org/jarrodconnolly/sluglife.png)](http://travis-ci.org/jarrodconnolly/sluglife)
 

@@ -1,36 +1,45 @@
-slug = require '../slug'
+var chai = require('chai');
+var expect = chai.expect;
+var slug = require('../index');
 
-describe 'slug', ->
-    it 'should convert input to string', ->
-        [slug 1].should.eql ['1']
-        [slug 567890].should.eql ['567890']
+describe('sluglife', function () {
+    it('should convert input to string', function () {
+        expect(slug(1)).to.equal('1');
+        expect(slug(567890)).to.equal('567890');
+    });
 
-    it 'should replace whitespaces with replacement', ->
-        [slug 'foo bar baz'].should.eql ['foo-bar-baz']
-        [slug 'foo bar baz', '_'].should.eql ['foo_bar_baz']
-        [slug 'foo bar baz', ''].should.eql ['foobarbaz']
+    it('should replace whitespaces with replacement', function () {
+        expect(slug('foo bar baz')).to.equal('foo-bar-baz');
+        expect(slug('foo bar baz', '_')).to.equal('foo_bar_baz');
+        expect(slug('foo bar baz', '')).to.equal('foobarbaz');
+    });
 
-    it 'should remove trailing space if any', ->
-        [slug ' foo bar baz '].should.eql ['foo-bar-baz']
+    it('should remove leading/trailing space if any', function() {
+        expect(slug(' foo bar baz ')).to.equal('foo-bar-baz');
+    });
 
-    it 'should remove not allowed chars', ->
-        [slug 'foo, bar baz'].should.eql ['foo-bar-baz']
-        [slug 'foo- bar baz'].should.eql ['foo-bar-baz']
-        [slug 'foo] bar baz'].should.eql ['foo-bar-baz']
+    it('should remove not allowed chars', function() {
+        expect(slug('foo, bar baz')).to.equal('foo-bar-baz');
+        expect(slug('foo- bar baz')).to.equal('foo-bar-baz');
+        expect(slug('foo] bar baz')).to.equal('foo-bar-baz');
+    });
 
-    it 'should leave allowed chars in rfc3986 mode', ->
-        allowed = ['.', '_', '~']
-        for a in allowed
-            [slug "foo #{a} bar baz",
-                mode: "rfc3986"].should.eql ["foo-#{a}-bar-baz"]
+    it('should leave allowed chars in rfc3986 mode', function() {
+        var allowed = ['.', '_', '~'];
+        for(var a in allowed) {
+            expect(slug('foo ' + a + ' bar baz', {mode: "rfc3986"})).to.equal('foo-' + a + '-bar-baz');
+        }
+    });
 
-    it 'should leave allowed chars in pretty mode', ->
-        allowed = ['_', '~']
-        for a in allowed
-            [slug "foo #{a} bar baz"].should.eql ["foo-#{a}-bar-baz"]
+    it('should leave allowed chars in pretty mode', function() {
+        var allowed = ['.', '_', '~'];
+        for(var a in allowed) {
+            expect(slug('foo ' + a + ' bar baz', {mode: "pretty"})).to.equal('foo-' + a + '-bar-baz');
+        }
+    });
 
-    it 'should replace latin chars', ->
-        char_map = {
+    it('should replace latin chars', function() {
+        const char_map = {
             'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A', 'Æ': 'AE',
             'Ç': 'C', 'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E', 'Ì': 'I', 'Í': 'I',
             'Î': 'I', 'Ï': 'I', 'Ð': 'D', 'Ñ': 'N', 'Ò': 'O', 'Ó': 'O', 'Ô': 'O',
@@ -41,12 +50,15 @@ describe 'slug', ->
             'ð': 'd', 'ñ': 'n', 'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o',
             'ő': 'o', 'ø': 'o', 'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u', 'ű': 'u',
             'ý': 'y', 'þ': 'th', 'ÿ': 'y', 'ẞ': 'SS'
-        }
-        for char, replacement of char_map
-            [slug "foo #{char} bar baz"].should.eql ["foo-#{replacement}-bar-baz"]
+        };
 
-    it 'should replace greek chars', ->
-        char_map = {
+        Object.keys(char_map).forEach(function(key) {
+            expect(slug('foo ' + key + ' bar baz')).to.equal('foo-' + char_map[key] +'-bar-baz');
+        });
+    });
+
+    it('should replace greek chars', function() {
+        const char_map = {
             'α':'a', 'β':'b', 'γ':'g', 'δ':'d', 'ε':'e', 'ζ':'z', 'η':'h', 'θ':'8',
             'ι':'i', 'κ':'k', 'λ':'l', 'μ':'m', 'ν':'n', 'ξ':'3', 'ο':'o', 'π':'p',
             'ρ':'r', 'σ':'s', 'τ':'t', 'υ':'y', 'φ':'f', 'χ':'x', 'ψ':'ps', 'ω':'w',
@@ -57,35 +69,65 @@ describe 'slug', ->
             'Ρ':'R', 'Σ':'S', 'Τ':'T', 'Υ':'Y', 'Φ':'F', 'Χ':'X', 'Ψ':'PS', 'Ω':'W',
             'Ά':'A', 'Έ':'E', 'Ί':'I', 'Ό':'O', 'Ύ':'Y', 'Ή':'H', 'Ώ':'W', 'Ϊ':'I',
             'Ϋ':'Y'
-        }
-        for char, replacement of char_map
-            [slug "foo #{char} bar baz"].should.eql ["foo-#{replacement}-bar-baz"]
+        };
 
-    it 'should replace turkish chars', ->
-        char_map = {
+        Object.keys(char_map).forEach(function(key) {
+            expect(slug('foo ' + key + ' bar baz')).to.equal('foo-' + char_map[key] +'-bar-baz');
+        });
+    });
+
+    it('should replace turkish chars', function() {
+        const char_map = {
             'ş':'s', 'Ş':'S', 'ı':'i', 'İ':'I', 'ç':'c', 'Ç':'C', 'ü':'u', 'Ü':'U',
             'ö':'o', 'Ö':'O', 'ğ':'g', 'Ğ':'G'
-        }
-        for char, replacement of char_map
-            [slug "foo #{char} bar baz"].should.eql ["foo-#{replacement}-bar-baz"]
+        };
 
-    it 'should replace cyrillic chars', ->
-        char_map = {
-            'а':'a', 'б':'b', 'в':'v', 'г':'g', 'д':'d', 'е':'e', 'ё':'yo', 'ж':'zh',
-            'з':'z', 'и':'i', 'й':'j', 'к':'k', 'л':'l', 'м':'m', 'н':'n', 'о':'o',
-            'п':'p', 'р':'r', 'с':'s', 'т':'t', 'у':'u', 'ф':'f', 'х':'h', 'ц':'c',
-            'ч':'ch', 'ш':'sh', 'щ':'sh', 'ъ':'u', 'ы':'y', 'ь':'', 'э':'e', 'ю':'yu',
-            'я':'ya',
-            'А':'A', 'Б':'B', 'В':'V', 'Г':'G', 'Д':'D', 'Е':'E', 'Ё':'Yo', 'Ж':'Zh',
-            'З':'Z', 'И':'I', 'Й':'J', 'К':'K', 'Л':'L', 'М':'M', 'Н':'N', 'О':'O',
-            'П':'P', 'Р':'R', 'С':'S', 'Т':'T', 'У':'U', 'Ф':'F', 'Х':'H', 'Ц':'C',
-            'Ч':'Ch', 'Ш':'Sh', 'Щ':'Sh', 'Ъ':'U', 'Ы':'Y', 'Ь':'', 'Э':'E', 'Ю':'Yu',
-            'Я':'Ya', 'Є':'Ye', 'І':'I', 'Ї':'Yi', 'Ґ':'G', 'є':'ye', 'і':'i', 'ї':'yi', 'ґ':'g'
-        }
-        for char, replacement of char_map
-            expected = "foo-#{replacement}-bar-baz"
-            expected = "foo-bar-baz" if not replacement
-            [slug "foo #{char} bar baz"].should.eql [expected]
+        Object.keys(char_map).forEach(function(key) {
+            expect(slug('foo ' + key + ' bar baz')).to.equal('foo-' + char_map[key] +'-bar-baz');
+        });
+    });
+
+    it('should replace cyrillic chars', function() {
+        const char_map = {
+            'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh',
+            'з': 'z', 'и': 'i', 'й': 'j', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
+            'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'c',
+            'ч': 'ch', 'ш': 'sh', 'щ': 'sh', 'ъ': 'u', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu',
+            'я': 'ya',
+            'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'Yo', 'Ж': 'Zh',
+            'З': 'Z', 'И': 'I', 'Й': 'J', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O',
+            'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'H', 'Ц': 'C',
+            'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Sh', 'Ъ': 'U', 'Ы': 'Y', 'Ь': '', 'Э': 'E', 'Ю': 'Yu',
+            'Я': 'Ya', 'Є': 'Ye', 'І': 'I', 'Ї': 'Yi', 'Ґ': 'G', 'є': 'ye', 'і': 'i', 'ї': 'yi', 'ґ': 'g'
+        };
+
+        Object.keys(char_map).forEach(function(key) {
+            if(char_map[key]) {
+                expect(slug('foo ' + key + ' bar baz')).to.equal('foo-' + char_map[key] + '-bar-baz');
+            } else {
+                expect(slug('foo ' + key + ' bar baz')).to.equal('foo-bar-baz');
+            }
+        });
+    });
+
+
+
+
+
+
+
+    it('', function() {
+        expect(slug('')).to.equal('');
+    });
+
+
+});
+
+
+
+
+/*
+
 
     it 'should replace czech chars', ->
         char_map = {
@@ -232,3 +274,8 @@ describe 'slug', ->
       text = "It's Your Journey We Guide You Through."
       expected = "Its-Your-Journey-We-Guide-You-Through."
       [slug text, mode:'rfc3986', lower:off].should.eql [expected]
+
+
+
+
+ */
