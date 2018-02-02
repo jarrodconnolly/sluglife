@@ -1,4 +1,3 @@
-/* eslint-disable object-property-newline */
 const {expect} = require('chai');
 const slug = require('../index');
 
@@ -10,8 +9,8 @@ describe('sluglife', () => {
 
   it('should replace whitespaces with replacement', () => {
     expect(slug('foo bar baz')).to.equal('foo-bar-baz');
-    expect(slug('foo bar baz', '_')).to.equal('foo_bar_baz');
-    expect(slug('foo bar baz', '')).to.equal('foobarbaz');
+    expect(slug('foo bar baz', {'replacement': '_'})).to.equal('foo_bar_baz');
+    expect(slug('foo bar baz', {'replacement': ''})).to.equal('foobarbaz');
   });
 
   it('should remove leading/trailing space if any', () => {
