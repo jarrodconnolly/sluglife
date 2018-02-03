@@ -1,6 +1,4 @@
-
-[![Build Status](https://secure.travis-ci.org/jarrodconnolly/sluglife.png)](http://travis-ci.org/jarrodconnolly/sluglife)
-![GitHub license](https://img.shields.io/github/license/jarrodconnolly/sluglife.svg)
+[![Build Status](https://travis-ci.org/jarrodconnolly/sluglife.svg?branch=master)](https://travis-ci.org/jarrodconnolly/sluglife) [![npm](https://img.shields.io/npm/v/sluglife.svg)](https://www.npmjs.com/package/sluglife) [![Dependency Status](https://david-dm.org/jarrodconnolly/sluglife.svg)](https://david-dm.org/jarrodconnolly/sluglife) ![GitHub license](https://img.shields.io/github/license/jarrodconnolly/sequelize-slugify.svg)
 
 # sluglife
 
