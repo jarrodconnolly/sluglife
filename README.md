@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/jarrodconnolly/sluglife.svg?branch=master)](https://travis-ci.org/jarrodconnolly/sluglife) [![npm](https://img.shields.io/npm/v/sluglife.svg)](https://www.npmjs.com/package/sluglife) [![Dependency Status](https://david-dm.org/jarrodconnolly/sluglife.svg)](https://david-dm.org/jarrodconnolly/sluglife) ![GitHub license](https://img.shields.io/github/license/jarrodconnolly/sequelize-slugify.svg)
 
-# sluglife
+# sluglife (■_■¬)
 
-slugifies every string, even when it contains unicode!
+slugifies string. Handles, unicode, multi-language characters, currency symbols, and
 
 Make strings url-safe.
 
@@ -14,56 +14,63 @@ Make strings url-safe.
 npm install sluglife
 ```
 
-## example
+## Examples
 
 ```javascript
 var slug = require('sluglife')
-var print = console.log.bind(console, '>')
 
-print(slug('i ♥ unicode'))
-// > i-love-unicode
+slug('i ♥ unicode') === 'i-love-unicode';
 
-print(slug('unicode ♥ is ☢')) // yes!
-// > unicode-love-is-radioactive
+slug('unicode ♥ is ☢') === 'unicode-love-is-radioactive';
 
-print(slug('i ♥ unicode', '_')) // If you prefer something else then `-` as seperator
-// > i_love_unicode
+slug('i ♥ unicode', {'replacement': '_'}) === 'i_love_unicode';
 
-slug.charmap['♥'] = 'freaking love' // change default charmap or use option {charmap:{…}} as 2. argument
-print(slug('I ♥ UNICODE'))
-// > I-freaking-love-UNICODE
+slug('I ♥ UNICODE', {'charMap': {'♥': 'freaking love'}}) === 'I-freaking-love-UNICODE';
 
-print(slug('☏-Number', {lower: true})) // If you prefer lower case
-// > telephone-number
+slug('☏-Number', {lower: true}) === 'telephone-number';
 
-print(slug('i <3 unicode'))
-// > i-love-unicode
+slug('i <3 unicode') === 'i-love-unicode';
 ```
 
-## options
+## Options
 
 ```javascript
-// options is either object or replacement (sets options.replacement)
-slug('string', [{options} || 'replacement']);
+slug('string', {
+  replacement: '-',               // space separator replacement character
+  replaceSymbols: true,           // replace unicode symbols or not
+  remove: null,                   // regex to remove characters that match (see 'pretty' definition)
+  lower: true,                    // lower case all letters in slug
+  charmap: slug.charmap,          // replace special characters
+  multicharmap: slug.multicharmap // replace multi-characters
+});
 ```
 
+## Defaults
+There are two default setting groups.
+The default mode is 'pretty'
+
 ```javascript
-slug.defaults.mode ='pretty';
+slug('Hello There World.', {'mode': 'rfc3986'}) === 'hello-there-world.';
+slug('Hello There World.', {'mode': 'pretty'}) === 'Hello-There-World';
+```
+The default setting groups are defined below.
+```javascript
 slug.defaults.modes['rfc3986'] = {
-    replacement: '-',      // replace spaces with replacement
-    symbols: true,         // replace unicode symbols or not
-    remove: null,          // (optional) regex to remove characters
-    lower: true,           // result in lower case
-    charmap: slug.charmap, // replace special characters
-    multicharmap: slug.multicharmap // replace multi-characters
+  replacement: '-',
+  replaceSymbols: true,
+  remove: null,
+  lower: true,
+  charmap: slug.charmap,
+  multicharmap: slug.multicharmap
 };
+ 
 slug.defaults.modes['pretty'] = {
-    replacement: '-',
-    symbols: true,
-    remove: /[.]/g,
-    lower: false,
-    charmap: slug.charmap,
-    multicharmap: slug.multicharmap
+  replacement: '-',
+  replaceSymbols: true,
+  remove: /[.]/g,
+  lower: false,
+  charmap: slug.charmap,
+  multicharmap: slug.multicharmap
 };
 ```
 

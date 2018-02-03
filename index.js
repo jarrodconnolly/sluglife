@@ -4,7 +4,6 @@ const lodashDefaults = require('lodash.defaults');
 const removeList = ['sign', 'cross', 'of', 'symbol', 'staff', 'hand', 'black', 'white']
   .map(word => new RegExp(word, 'gi'));
 
-
 function slug(userSlugify, userOptions) {
   let slugify = userSlugify.toString();
 
