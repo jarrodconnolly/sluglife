@@ -9,6 +9,9 @@
     "url": "https://github.com/jarrodconnolly/sluglife"
   },
   "main": "index.js",
+  "engines": {
+    "node": ">=4"
+  },
   "keywords": [
     "slugify",
     "slug",
