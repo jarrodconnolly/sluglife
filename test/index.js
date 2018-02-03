@@ -1,5 +1,4 @@
-// eslint-disable-next-line prefer-destructuring
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const slug = require('../index');
 
 describe('sluglife', () => {
