@@ -2,7 +2,7 @@
 
 # sluglife (■_■¬)
 
-slugifies string. Handles, unicode, multi-language characters, currency symbols, and
+slugifies string. Handles, unicode, multi-language characters, currency symbols, and more!
 
 Make strings url-safe.
 
