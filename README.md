@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/jarrodconnolly/sluglife.svg?branch=master)](https://travis-ci.org/jarrodconnolly/sluglife) [![npm](https://img.shields.io/npm/v/sluglife.svg)](https://www.npmjs.com/package/sluglife) [![Dependency Status](https://david-dm.org/jarrodconnolly/sluglife.svg)](https://david-dm.org/jarrodconnolly/sluglife) ![GitHub license](https://img.shields.io/github/license/jarrodconnolly/sequelize-slugify.svg)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjarrodconnolly%2Fsluglife.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjarrodconnolly%2Fsluglife?ref=badge_shield)
 
 # sluglife (■_■¬)
 
@@ -75,3 +76,7 @@ slug.defaults.modes['pretty'] = {
 ```
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjarrodconnolly%2Fsluglife.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjarrodconnolly%2Fsluglife?ref=badge_large)
