@@ -23,11 +23,14 @@
   ],
   "scripts": {
     "test": "mocha ./test/*.js",
-    "lint": "eslint \"**/*.js\""
+    "lint": "eslint \"**/*.js\"",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "lodash.defaults": "^4.2.0",
-    "unicode": ">=11.0.1"
+    "unicode": ">=11.0.1",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -35,5 +38,6 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "mocha": "^6.0.2"
-  }
+  },
+  "snyk": true
 }
