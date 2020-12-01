@@ -10,8 +10,11 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=6.12.3"
+    "node": ">=10.9.0"
   },
+  "files": [
+    "index.js"
+  ],
   "keywords": [
     "slugify",
     "slug",
@@ -23,17 +26,20 @@
   ],
   "scripts": {
     "test": "mocha ./test/*.js",
-    "lint": "eslint \"**/*.js\""
+    "lint": "eslint \"**/*.js\"",
+    "release": "standard-version --sign"
   },
   "dependencies": {
-    "lodash.defaults": "^4.2.0",
-    "unicode": ">=11.0.1"
+    "lodash.defaults": "4.2.0",
+    "transliteration": "2.2.0",
+    "unicode": "12.1.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.15.3",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "mocha": "^6.0.2"
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.1",
+    "standard-version": "9.0.0"
   }
 }

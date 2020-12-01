@@ -1,17 +1,19 @@
+'use strict';
+
 module.exports = {
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module"
-  },
-  "extends": "airbnb-base",
-  "env": {
+  'env': {
+    'commonjs': true,
     'es6': true,
-    "node": true,
-    "mocha": true
+    'node': true,
+    'mocha': true,
+    'es2021': true
   },
-  "rules": {
-    "object-curly-spacing": ["error", "never"],
-    "quote-props": ["error", "always"],
-    "object-property-newline": ["off"]
-  }
+  'extends': 'eslint:recommended',
+  'parserOptions': {
+    'ecmaVersion': 12,
+    'sourceType': 'script',
+  },
+  'rules': {
+    'semi': 'error'
+  },
 };
