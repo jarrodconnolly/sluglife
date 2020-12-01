@@ -1,5 +1,5 @@
 const {expect} = require('chai');
-const slug = require('../index');
+const {slug} = require('../index');
 
 describe('sluglife', () => {
   it('should convert input to string', () => {
@@ -21,6 +21,14 @@ describe('sluglife', () => {
     expect(slug('foo, bar baz')).to.equal('foo-bar-baz');
     expect(slug('foo- bar baz')).to.equal('foo-bar-baz');
     expect(slug('foo] bar baz')).to.equal('foo-bar-baz');
+  });
+
+  it('should replace this unicode 1', () => {
+    expect(slug('جنید عطاری', {'mode': 'rfc3986'})).to.equal('jnyd-aatry');
+  });
+
+  it('should replace this unicode 2', () => {
+    expect(slug('你好我的名字是', {'mode': 'rfc3986'})).to.equal('ni-hao-wo-de-ming-zi-shi');
   });
 
   it('should leave allowed chars in rfc3986 mode', () => {

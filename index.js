@@ -1,5 +1,8 @@
 const symbols = require('unicode/category/So');
 const lodashDefaults = require('lodash.defaults');
+// const tr = require('transliteration').slugify;
+const other = require('./node_modules/transliteration/dist/node/data/charmap.js');
+const {hasChinese} = require('./node_modules/transliteration/dist/node/src/common/utils.js');
 
 const removeList = ['sign', 'cross', 'of', 'symbol', 'staff', 'hand', 'black', 'white']
   .map(word => new RegExp(word, 'gi'));
@@ -23,12 +26,18 @@ function slug(userSlugify, userOptions) {
 
   let result = '';
   for (let i = 0; i < slugify.length; i += 1) {
-    const char = slugify[i];
+    const char = slugify.charAt(i);
     let newValue = char;
 
     if (options.charmap[char]) {
       // simple replace from the charmap
       newValue = options.charmap[char];
+    } else if (other.charmap[char]) {
+      newValue = other.charmap[char];
+      // put spacer after chinese characters unless last one
+      if (i < (slugify.length - 1) && hasChinese(char)) {
+        newValue += options.replacement;
+      }
     } else if (options.replaceSymbols) {
       // unicode symbols
       const code = slugify.charCodeAt(i);
@@ -43,7 +52,6 @@ function slug(userSlugify, userOptions) {
       }
     }
 
-    newValue = newValue.replace(/[^\w\s\-._~]/g, ''); // allowed
     if (options.remove) {
       newValue = newValue.replace(options.remove, '');
     }
@@ -51,7 +59,12 @@ function slug(userSlugify, userOptions) {
     result += newValue;
   }
 
+  // if (containsNonLatinCodepoints(result)) {
+  //   result = tr(result).toLowerCase();
+  // }
+
   result = result.trim(); // trim leading/trailing spaces
+  result = result.replace(/[^\w\s\-._~]/g, ''); // allowed
   result = result.replace(/[-\s]+/g, options.replacement); // convert spaces
 
   if (options.lower) {
@@ -176,4 +189,4 @@ slug.defaults.modes = {
 };
 
 
-module.exports = slug;
+module.exports.slug = slug;
