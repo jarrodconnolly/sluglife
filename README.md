@@ -1,4 +1,7 @@
-[![Build Status](https://travis-ci.com/jarrodconnolly/sluglife.svg?branch=master)](https://travis-ci.com/jarrodconnolly/sluglife) [![npm](https://img.shields.io/npm/v/sluglife.svg)](https://www.npmjs.com/package/sluglife) [![Dependency Status](https://david-dm.org/jarrodconnolly/sluglife.svg)](https://david-dm.org/jarrodconnolly/sluglife) [![Known Vulnerabilities](https://snyk.io/test/github/jarrodconnolly/sluglife/badge.svg?targetFile=package.json)](https://snyk.io/test/github/jarrodconnolly/sluglife?targetFile=package.json) ![GitHub license](https://img.shields.io/github/license/jarrodconnolly/sequelize-slugify.svg)
+![npm](https://img.shields.io/npm/v/sluglife)
+![npm](https://img.shields.io/npm/dw/sluglife)
+![NPM](https://img.shields.io/npm/l/sluglife)
+![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow)
 
 # sluglife (■_■¬)
 
