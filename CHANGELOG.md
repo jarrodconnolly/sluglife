@@ -7,8 +7,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* add support for more langugages and unicode
+* add support for more languages and unicode
 
 ### Features
 
-* add support for more langugages and unicode ([0131d9a](https://github.com/jarrodconnolly/sluglife/commit/0131d9af8d948f869d37a2358ea3da4d4bfff348))
+* add support for more languages and unicode ([0131d9a](https://github.com/jarrodconnolly/sluglife/commit/0131d9af8d948f869d37a2358ea3da4d4bfff348))

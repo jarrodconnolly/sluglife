@@ -1,6 +1,5 @@
 const symbols = require('unicode/category/So');
 const lodashDefaults = require('lodash.defaults');
-// const tr = require('transliteration').slugify;
 const other = require('./node_modules/transliteration/dist/node/data/charmap.js');
 const {hasChinese} = require('./node_modules/transliteration/dist/node/src/common/utils.js');
 
@@ -58,10 +57,6 @@ function slug(userSlugify, userOptions) {
 
     result += newValue;
   }
-
-  // if (containsNonLatinCodepoints(result)) {
-  //   result = tr(result).toLowerCase();
-  // }
 
   result = result.trim(); // trim leading/trailing spaces
   result = result.replace(/[^\w\s\-._~]/g, ''); // allowed
@@ -187,6 +182,5 @@ slug.defaults.modes = {
     'multicharmap': slug.defaults.multicharmap,
   },
 };
-
 
 module.exports.slug = slug;

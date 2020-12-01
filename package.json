@@ -2,11 +2,16 @@
   "name": "sluglife",
   "description": "Slugifies strings.",
   "version": "1.0.0",
-  "author": "Jarrod Connolly <jarrod@nestedquotes.ca>",
-  "license": "MIT",
+  "author": {
+    "name": "Jarrod Connolly",
+    "email": "jarrod@nestedquotes.ca"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jarrodconnolly/sluglife"
+  },
+  "bugs": {
+    "url": "https://github.com/jarrodconnolly/sluglife/issues"
   },
   "main": "index.js",
   "engines": {
@@ -24,6 +29,7 @@
     "unicode",
     "url"
   ],
+  "license": "MIT",
   "scripts": {
     "test": "mocha ./test/*.js",
     "lint": "eslint \"**/*.js\"",
