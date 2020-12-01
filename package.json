@@ -1,7 +1,7 @@
 {
   "name": "sluglife",
   "description": "Slugifies strings.",
-  "version": "0.9.8",
+  "version": "1.0.0",
   "author": "Jarrod Connolly <jarrod@nestedquotes.ca>",
   "license": "MIT",
   "repository": {
